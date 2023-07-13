@@ -11,70 +11,73 @@
 {% set isAnticipo = doc.totalAnticipos is defined and doc.totalAnticipos > 0 %}
 {% set name = doc.tipoDoc|catalog('01') %}
 <table width="100%">
-    <tbody><tr>
+    <tbody>
+      <tr>
         <td style="padding:30px; !important">
-            <table width="100%" height="200px" border="0" aling="center" cellpadding="0" cellspacing="0">
-                <tbody><tr>
-                    <td width="50%" height="90" align="center">
-                        <span><img src="{{ params.system.logo|image_b64 }}" height="80" style="text-align:center" border="0"></span>
-                    </td>
-                    <td width="5%" height="40" align="center"></td>
-                    <td width="45%" rowspan="2" valign="bottom" style="padding-left:0">
-                        <div class="tabla_borde">
-                            <table width="100%" border="0" height="200" cellpadding="6" cellspacing="0">
-                                <tbody><tr>
-                                    <td align="center">
-                                        <span style="font-family:Tahoma, Geneva, sans-serif; font-size:29px" text-align="center">{{ name }}</span>
-                                        <br>
-                                        <span style="font-family:Tahoma, Geneva, sans-serif; font-size:19px" text-align="center">E L E C T R Ó N I C A</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="center">
-                                        <span style="font-size:15px" text-align="center">R.U.C.: {{ cp.ruc }}</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="center">
-                                        <span style="font-size:24px">{{ doc.serie }}-{{ doc.correlativo }}</span>
-                                    </td>
-                                </tr>
-                                </tbody></table>
-                        </div>
-                    </td>
+          <table width="100%" height="200px" border="0" aling="center" cellpadding="0" cellspacing="0">
+            <tbody>
+              <tr>
+                <td width="50%" height="120" align="center">
+                  <span><img src="{{ params.system.logo|image_b64 }}" height="110" style="text-align:center" border="0"></span>
+                </td>
+                <td width="5%" height="10" align="center"></td>
+                <td width="45%" rowspan="2" valign="bottom" style="padding-left:0">
+                  <div class="tabla_borde">
+                    <table width="100%" border="0" height="200" cellpadding="6" cellspacing="0">
+                      <tbody>
+                        <tr>
+                          <td align="center">
+                            <span style="font-family:Tahoma, Geneva, sans-serif; font-size:29px" text-align="center">{{ name }}</span>
+                            <br>
+                            <span style="font-family:Tahoma, Geneva, sans-serif; font-size:24px" text-align="center">ELECTRÓNICA</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="center">
+                            <span style="font-size:15px" text-align="center">R.U.C.: {{ cp.ruc }}</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="center">
+                            <span style="font-size:24px">{{ doc.serie }}-{{ doc.correlativo }}</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td valign="bottom" style="padding-left:0">
+                  <div class="tabla_borde">
+                    <table width="96%" height="100%" border="0" border-radius="" cellpadding="9" cellspacing="0">
+                      <tbody>
+                        <tr>
+                          <td align="center">
+                            <strong><span style="font-size:15px">{{ cp.razonSocial }}</span></strong>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="left">
+                            {{ params.user.header|raw }}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="tabla_borde">
+            {% set cl = doc.client %}
+            <table width="100%" border="0" cellpadding="5" cellspacing="0">
+              <tbody>
+                <tr>
+                  <td width="60%" align="left"><strong>Razón Social:</strong>  {{ cl.rznSocial }}</td>
+                  <td width="40%" align="left"><strong>{{ cl.tipoDoc|catalog('06') }}:</strong>  {{ cl.numDoc }}</td>
                 </tr>
                 <tr>
-                    <td valign="bottom" style="padding-left:0">
-                        <div class="tabla_borde">
-                            <table width="96%" height="100%" border="0" border-radius="" cellpadding="9" cellspacing="0">
-                                <tbody><tr>
-                                    <td align="center">
-                                        <strong><span style="font-size:15px">{{ cp.razonSocial }}</span></strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="left">
-                                        <strong>Dirección: </strong>{{ cp.address.direccion }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="left">
-                                        {{ params.user.header|raw }}
-                                    </td>
-                                </tr>
-                                </tbody></table>
-                        </div>
-                    </td>
-                </tr>
-                </tbody></table>
-            <div class="tabla_borde">
-                {% set cl = doc.client %}
-                <table width="100%" border="0" cellpadding="5" cellspacing="0">
-                    <tbody><tr>
-                        <td width="60%" align="left"><strong>Razón Social:</strong>  {{ cl.rznSocial }}</td>
-                        <td width="40%" align="left"><strong>{{ cl.tipoDoc|catalog('06') }}:</strong>  {{ cl.numDoc }}</td>
-                    </tr>
-                    <tr>
                         <td width="60%" align="left">
                             <strong>Fecha Emisión: </strong>  {{ doc.fechaEmision|date('d/m/Y') }}
                             {% if doc.fechaEmision|date('H:i:s') != '00:00:00' %} {{ doc.fechaEmision|date('H:i:s') }} {% endif %}

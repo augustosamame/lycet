@@ -13,10 +13,10 @@
         <td style="padding:30px; !important">
             <table width="100%" height="200px" border="0" aling="center" cellpadding="0" cellspacing="0">
                 <tbody><tr>
-                    <td width="50%" height="90" align="center">
+                    <td width="50%" height="120" align="center">
                         <span><img src="{{ params.system.logo|image_b64 }}" height="80" style="text-align:center" border="0"></span>
                     </td>
-                    <td width="5%" height="40" align="center"></td>
+                    <td width="5%" height="10" align="center"></td>
                     <td width="45%" rowspan="2" valign="bottom" style="padding-left:0">
                         <div class="tabla_borde">
                             <table width="100%" border="0" height="200" cellpadding="6" cellspacing="0">
@@ -24,7 +24,7 @@
                                     <td align="center">
                                         <span style="font-family:Tahoma, Geneva, sans-serif; font-size:29px" text-align="center">{{ name }}</span>
                                         <br>
-                                        <span style="font-family:Tahoma, Geneva, sans-serif; font-size:19px" text-align="center">E L E C T R Ó N I C A</span>
+                                        <span style="font-family:Tahoma, Geneva, sans-serif; font-size:24px" text-align="center">ELECTRÓNICA</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -75,10 +75,9 @@
                     </tr>
                     <tr class="border_top">
                         <td width="60%" align="left"><strong>Razón Social:</strong>  {{ cl.rznSocial }}</td>
-                        <td width="40%" align="left"><strong>{{ cl.tipoDoc|catalog('06') }}:</strong>  {{ cl.numDoc }}</td>
                     </tr>
-                    <tr>
-                        <td width="40%" align="left" colspan="2"><strong>Dirección:</strong>  {% if cl.address %}{{ cl.address.direccion }}{% endif %}</td>
+                    <tr class="border_top">
+                        <td width="60%" align="left"><strong>{{ cl.tipoDoc|catalog('06') }}:</strong>  {{ cl.numDoc }}</td>
                     </tr>
                     </tbody></table>
             </div><br>
@@ -97,15 +96,17 @@
                     </tr>
                     <tr>
                         <td width="60%" align="left"><strong>Motivo Traslado:</strong>  {{ doc.envio.desTraslado }} </td>
-                        <td width="40%" align="left"><strong>Modalidad de Transporte:</strong>  {{ doc.envio.modTraslado }} </td>
+                        <td width="40%" align="left"><strong>Modalidad de Traslado:</strong>  {% if doc.envio.modTraslado == '02' %} 02 - Transporte Privado {% else %} 01 - Transporte Público {% endif %}</td>
                     </tr>
                     <tr>
                         <td width="60%" align="left"><strong>Peso Bruto Total ({{ doc.envio.undPesoTotal }}):</strong>  {{ doc.envio.pesoTotal }} </td>
                         <td width="40%">{% if doc.envio.numBultos %}<strong>Número de Bultos:</strong>  {{ doc.envio.numBultos }}{% endif %}</td>
                     </tr>
                     <tr>
-                        <td width="60%" align="left"><strong>P. Partida:</strong>  {{ doc.envio.partida.ubigueo }} - {{ doc.envio.partida.direccion }}</td>
-                        <td width="40%" align="left"><strong>P. Llegada: </strong>  {{ doc.envio.llegada.ubigueo }} - {{ doc.envio.llegada.direccion }}</td>
+                        <td width="100%" align="left"><strong>P. Partida:</strong>  {{ doc.envio.partida.ubigueo }} - {{ doc.envio.partida.direccion }}</td>
+                    </tr>
+                    <tr>
+                        <td width="100%" align="left"><strong>P. Llegada: </strong>  {{ doc.envio.llegada.ubigueo }} - {{ doc.envio.llegada.direccion }}</td>
                     </tr>
                     </tbody></table>
             </div><br>
@@ -118,12 +119,15 @@
                         <td colspan="2">TRANSPORTE</td>
                     </tr>
                     <tr class="border_top">
-                        <td width="60%" align="left"><strong>Razón Social:</strong>  {{ tr.rznSocial }}</td>
-                        <td width="40%" align="left"><strong>{{ tr.tipoDoc|catalog('06') }}:</strong>  {{ tr.numDoc }}</td>
+                        <td width="60%" align="left"><strong>Razón Social:</strong>  {{ tr.RznSocial }}</td>
+                        <td width="40%" align="left"><strong>{{ tr.tipoDoc|catalog('06') }}:</strong>  {{ tr.NumDoc }}</td>
                     </tr>
                     <tr>
-                        <td width="60%" align="left"><strong>Vehiculo:</strong>  {{ tr.placa }}</td>
-                        <td width="40%" align="left"><strong>Conductor:</strong>  {{ tr.choferTipoDoc|catalog('06') }} {{ tr.choferDoc }}</td>
+                        <td width="60%" align="left"><strong>Vehiculo:</strong>  {{ tr.Placa }}</td>
+                        <td width="40%" align="left"><strong>Conductor:</strong>  {{ tr.ChoferTipoDoc|catalog('06') }} {{ tr.ChoferDoc }}</td>
+                    </tr>
+                    <tr>
+                        <td width="40%" align="left"><strong>Licencia Conductor:</strong>  {{ tr.ChoferTipoDoc|catalog('06') }} {{ tr.ChoferDoc }}</td>
                     </tr>
                     </tbody></table>
             </div><br>
