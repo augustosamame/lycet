@@ -59,6 +59,11 @@
                         </tr>
                         <tr>
                           <td align="left">
+                            <strong>Dirección: </strong>{{ cp.address.direccion }}, {{ cp.address.distrito }, {{ cp.address.departamento }}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="left">
                             {{ params.user.header|raw }}
                           </td>
                         </tr>
@@ -85,7 +90,6 @@
                             <br><br><strong>Fecha Vencimiento: </strong>  {{ doc.fecVencimiento|date('d/m/Y') }}
                             {% endif %}
                         </td>
-                        <td width="40%" align="left"><strong>Dirección: </strong>  {% if cl.address %}{{ cl.address.direccion }}{% endif %}</td>
                     </tr>
                     {% if isNota %}
                     <tr>
