@@ -97,6 +97,13 @@
                         <td width="40%" align="left"><strong>Documento Ref.: </strong>  {{ doc.numDocfectado }}</td>
                     </tr>
                     {% endif %}
+                    All values of doc
+                    {% for key, value in doc %}
+                        <tr>
+                            <td width="60%" align="left"><strong>{{ key }}: </strong>  {{ value }}</td>
+                            <td width="40%" align="left"></td>
+                        </tr>
+                    {% endfor %}
                     <tr>
                         <td width="60%" align="left"><strong>Tipo Moneda: </strong>  {{ doc.tipoMoneda|catalog('021') }} </td>
                         <td width="40%" align="left">{% if doc.compra is defined and doc.compra %}<strong>O/C: </strong>  {{ doc.compra }}{% endif %}</td>
