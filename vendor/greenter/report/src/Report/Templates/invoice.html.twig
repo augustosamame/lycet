@@ -8,6 +8,7 @@
 <body class="white-bg">
 {% set cp = doc.company %}
 {% set isNota = doc.tipoDoc in ['07', '08'] %}
+{% set isNotaDebito = doc.tipoDoc in ['08'] %}
 {% set isAnticipo = doc.totalAnticipos is defined and doc.totalAnticipos > 0 %}
 {% set name = doc.tipoDoc|catalog('01') %}
 <table width="100%">
@@ -101,9 +102,11 @@
                         <td width="60%" align="left"><strong>Tipo Moneda: </strong>  {{ doc.tipoMoneda|catalog('021') }} </td>
                         <td width="40%" align="left">{% if doc.compra is defined and doc.compra %}<strong>O/C: </strong>  {{ doc.compra }}{% endif %}</td>
                     </tr>
+                    {% if isNotaDebito %}
                     <tr>
                         <td width="60%" align="left"><strong>Condición de Pago: </strong>  {{ doc.formaPago.tipo }}</td>
                     </tr>
+                    {% endif %}
                     {% if doc.guias %}
                     <tr>
                         <td width="60%" align="left"><strong>Guias: </strong>
