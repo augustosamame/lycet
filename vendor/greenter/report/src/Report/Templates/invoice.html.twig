@@ -191,6 +191,16 @@
                                     </p>
                                 </td>
                             </tr>
+                            {% if doc.observacion %}
+                            <tr>
+                              <td width="30%" style="font-size: 10px;">
+                                <br><br>
+                                <span style="font-family:Tahoma, Geneva, sans-serif; font-size:12px" text-align="center"><strong>Observaciones: </strong></span>
+                                <br>
+                                <p>{{ doc.observacion }}</p>
+                              </td>
+                            </tr>
+                            {% endif %}
                             {% if isNota %}
                             <tr class="border_top">
                                 <td width="30%" style="font-size: 10px;">
