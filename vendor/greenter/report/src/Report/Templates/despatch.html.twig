@@ -151,7 +151,7 @@
                     <tr>
                       <td align="left"><strong>Choferes:</strong></td>
                     </tr>
-                    {% for chofer in doc.choferes %}
+                    {% for chofer in doc.envio.choferes %}
                     <tr>
                         <td width="100%" align="left"><strong>Chofer {{ chofer.tipo }}:</strong>  {{ chofer.apellidos }} {{ chofer.nombres }} - {{ chofer.tipoDoc|catalog('06') }} No. {{ chofer.nroDoc }}</td>
                     </tr>
