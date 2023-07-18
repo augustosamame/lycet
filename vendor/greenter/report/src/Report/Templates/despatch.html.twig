@@ -100,7 +100,7 @@
                     </tr>
                     <tr>
                         <td width="60%" align="left"><strong>Peso Bruto Total ({{ doc.envio.undPesoTotal }}):</strong>  {{ doc.envio.pesoTotal }} </td>
-                        <td width="40%" align="left"><strong>Indicador de transbordo programado: {{ doc.envio.indTransbordo ? 'Si' : 'No' }} </strong></td>
+                        <td width="40%" align="left"><strong>Indicador de transbordo programado:  </strong>{{ doc.envio.indTransbordo ? 'Si' : 'No' }}</td>
                     </tr>
                     <tr>
                         <td align="left"><strong>P. Partida:</strong>  {{ doc.envio.partida.ubigueo }} - {{ doc.envio.partida.direccion }}</td>
@@ -110,8 +110,8 @@
                     </tr>
                     </tbody></table>
             </div><br>
+            {% if doc.envio.modTraslado == '01' %}
             {% set tr = doc.envio.transportista %}
-            {% if tr %}
             <div class="tabla_borde">
                 <table width="100%" border="0" cellpadding="5" cellspacing="0">
                     <tbody>
@@ -122,6 +122,7 @@
                         <td width="60%" align="left"><strong>Razón Social:</strong>  {{ tr.rznSocial }}</td>
                         <td width="40%" align="left"><strong>{{ tr.tipoDoc|catalog('06') }}:</strong>  {{ tr.numDoc }}</td>
                     </tr>
+                    {% if tr.placa %}
                     <tr>
                         <td width="60%" align="left"><strong>Vehiculo:</strong>  {{ tr.placa }}</td>
                         <td width="40%" align="left"><strong>Conductor:</strong>  {{ tr.choferTipoDoc|catalog('06') }} {{ tr.choferDoc }}</td>
@@ -129,6 +130,35 @@
                     <tr>
                       <td align="left"><strong>Licencia Conductor:</strong>  {{ tr.choferTipoDoc|catalog('06') }} {{ tr.choferDoc }}</td>
                     </tr>
+                    {% endif %}
+                    <tr>
+                      <td align="left"><strong>Número de Registro del MTC:</strong>  {{ tr.nroMtc }}</td>
+                    </tr>
+                    </tbody></table>
+            </div><br>
+            {% endif %}
+            {% if doc.envio.modTraslado == '02' %}
+            <div class="tabla_borde">
+                <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <td colspan="2">TRANSPORTE</td>
+                    </tr>
+                    <tr class="border_top">
+                        <td width="60%" align="left"><strong>Indicador de Traslado en Vehículos de Categoría M1 o L:</strong>  {{ doc.envio.indicadores ? 'Si' : 'No' }}</td>
+                        <td width="40%" align="left"><strong>Placa Vehículo:</strong>  {{ doc.envio.vehiculo.placa }}</td>
+                    </tr>
+                    <tr>
+                      <td align="left"><strong>Choferes:</strong></td>
+                    </tr>
+                    {% for chofer in doc.choferes %}
+                    <tr>
+                        <td width="100%" align="left"><strong>Chofer {{ chofer.tipo }}:</strong>  {{ chofer.apellidos }} {{ chofer.nombres }} - {{ chofer.tipoDoc|catalog('06') }} No. {{ chofer.nroDoc }}</td>
+                    </tr>
+                    <tr>
+                      <td align="left"><strong>Número de Licencia de Conducir:</strong>  {{ chofer.licencia }} </td>
+                    </tr>
+                    {% endfor %}
                     </tbody></table>
             </div><br>
             {% endif %}
