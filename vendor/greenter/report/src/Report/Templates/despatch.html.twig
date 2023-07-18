@@ -100,7 +100,7 @@
                     </tr>
                     <tr>
                         <td width="60%" align="left"><strong>Peso Bruto Total ({{ doc.envio.undPesoTotal }}):</strong>  {{ doc.envio.pesoTotal }} </td>
-                        <td width="40%" align="left"><strong>Indicador de transbordo programado: {{ 'Si' if doc.envio.indTransbordo else 'No' }}</strong></td>
+                        <td width="40%" align="left"><strong>Indicador de transbordo programado: {{ doc.envio.indTransbordo ? 'Si' : 'No' }} </strong></td>
                     </tr>
                     <tr>
                         <td align="left"><strong>P. Partida:</strong>  {{ doc.envio.partida.ubigueo }} - {{ doc.envio.partida.direccion }}</td>
