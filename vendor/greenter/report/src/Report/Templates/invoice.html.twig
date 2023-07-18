@@ -108,7 +108,7 @@
                     {% if doc.formaPago.tipo == "Credito" %}
                     <tr>
                       {% for cuota in doc.cuotas %}
-                        <td width="60%" align="left"><strong>Cuota Fecha: </strong>  {{ cuota.fechaPago }}</td>
+                        <td width="60%" align="left"><strong>Cuota Fecha: </strong>  {{ cuota.fechaPago.format('d/m/Y') }}</td>
                         <td width="40%" align="left"><strong>Cuota Monto: </strong>  {{ cuota.monto }}</td>
                       {% endfor %}
                     {% endif %}
